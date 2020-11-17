@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/InitFragment">
+
+    <fragment
+        android:id="@+id/InitFragment"
+        android:name="com.example.soundendlessrunner.MenuFragments.InitFragment"
+        tools:layout="@layout/fragment_init">
+
+        <action
+            android:id="@+id/action_next"
+            app:destination="@id/StartGameFragment"
+            app:launchSingleTop="false" />
+        <action
+            android:id="@+id/action_previous"
+            app:destination="@id/StartTutorialFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/StartGameFragment"
+        android:name="com.example.soundendlessrunner.MenuFragments.StartGameFragment"
+        tools:layout="@layout/fragment_start_game">
+
+        <action
+            android:id="@+id/action_next"
+            app:destination="@id/NoOfTracksFragment" />
+        <action
+            android:id="@+id/action_previous"
+            app:destination="@id/StartTutorialFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/NoOfTracksFragment"
+        android:name="com.example.soundendlessrunner.MenuFragments.NoOfTracksFragment"
+        tools:layout="@layout/fragment_no_of_tracks">
+
+        <action
+            android:id="@+id/action_next"
+            app:destination="@id/FrequencyFragment" />
+        <action
+            android:id="@+id/action_previous"
+            app:destination="@id/StartGameFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/FrequencyFragment"
+        android:name="com.example.soundendlessrunner.MenuFragments.FrequencyFragment"
+        tools:layout="@layout/fragment_frequency">
+
+        <action
+            android:id="@+id/action_next"
+            app:destination="@id/ControlFragment" />
+        <action
+            android:id="@+id/action_previous"
+            app:destination="@id/NoOfTracksFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ControlFragment"
+        android:name="com.example.soundendlessrunner.MenuFragments.ControlFragment"
+        tools:layout="@layout/fragment_control">
+
+        <action
+            android:id="@+id/action_next"
+            app:destination="@id/EnableStopFragment" />
+        <action
+            android:id="@+id/action_previous"
+            app:destination="@id/FrequencyFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/EnableStopFragment"
+        android:name="com.example.soundendlessrunner.MenuFragments.EnableStopFragment"
+        tools:layout="@layout/fragment_enable_stop">
+
+        <action
+            android:id="@+id/action_next"
+            app:destination="@id/StartTutorialFragment" />
+        <action
+            android:id="@+id/action_previous"
+            app:destination="@id/ControlFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/StartTutorialFragment"
+        android:name="com.example.soundendlessrunner.MenuFragments.StartTutorialFragment"
+        tools:layout="@layout/fragment_start_tutorial">
+
+        <action
+            android:id="@+id/action_next"
+            app:destination="@id/ExitFragment" />
+        <action
+            android:id="@+id/action_previous"
+            app:destination="@id/EnableStopFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ExitFragment"
+        android:name="com.example.soundendlessrunner.MenuFragments.ExitFragment"
+        tools:layout="@layout/fragment_start_game">
+
+        <action
+            android:id="@+id/action_next"
+            app:destination="@id/StartGameFragment" />
+        <action
+            android:id="@+id/action_previous"
+            app:destination="@id/StartTutorialFragment" />
+    </fragment>
+</navigation>
