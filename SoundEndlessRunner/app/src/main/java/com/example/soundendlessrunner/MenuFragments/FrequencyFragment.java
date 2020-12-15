@@ -16,7 +16,7 @@ public class FrequencyFragment extends MenuFragment {
     private SharedPreferences sharedPref;
 
     final int MIN_OBSTACLES = 1;
-    final int DEFAULT_FREQUENCY = 5;
+    final int DEFAULT_FREQUENCY = 6;
     final int MAX_OBSTACLES = 30;
     
     @Override

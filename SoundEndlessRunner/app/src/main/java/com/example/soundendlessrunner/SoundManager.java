@@ -15,7 +15,6 @@ public class SoundManager {
     private MediaPlayer currentlyPlaying;
     VolumeShaper.Configuration volumeConfig;
 
-
     public SoundManager(Context context, long soundTime) {
         this.soundTime = soundTime;
 
@@ -57,7 +56,9 @@ public class SoundManager {
     }
 
     public void stopPlayingSound() {
-        currentlyPlaying.pause();
+        if(currentlyPlaying != null) {
+            currentlyPlaying.pause();
+        }
     }
 
     public void setVolume(float leftVolume, float rightVolume) {

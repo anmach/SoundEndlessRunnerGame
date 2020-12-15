@@ -1,5 +1,6 @@
 package com.example.soundendlessrunner.MenuFragments;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 
@@ -47,7 +48,11 @@ public class MenuFragment extends Fragment {
     protected void previousMethod() {}
 
     public void repeatText() {
-        tts.speak(message, TextToSpeech.QUEUE_FLUSH, null);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            tts.speak(message,TextToSpeech.QUEUE_FLUSH,null,null);
+        } else {
+            tts.speak(message, TextToSpeech.QUEUE_FLUSH, null);
+        }
     }
 
     //TODO: Change method name...

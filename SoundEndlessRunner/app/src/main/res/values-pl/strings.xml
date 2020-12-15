@@ -52,4 +52,37 @@
     <string name="lf_message2">Przewiń aby zmienić język. Stuknij dwukrotnie aby zapisać i powrócić do menu głównego.</string>
     <string name="stf_message">Samouczek. Stuknij dwukrotnie aby włączyć samouczek.</string>
     <string name="ma_exit_game">Aby wrócić do menu, dotknij ekranu czterema palcami.</string>
+
+    <string name="tut_part0">Witamy w samouczku. Nauczymy cię tutaj jak grać w grę. W trakcie gry będziesz słyszeć jeden z trzech typów dźwięków, każdy symbolizujący jeden typ obiektu - przeszkodę, życie lub punkt.
+        Musisz unikać przeszkód. Jeśli nie uda ci się uniknąć przeszkody, stracisz jedno życie. Możesz zdobywać dodatkowe życia, aby grać dłużej.
+        Możesz zdobywać punkty, aby uzyskać lepszy wynik.
+        Za chwilę usłyszysz dźwięk, który symbolizuje przeszkodę.
+        Przeszkoda będzie umieszczona na tym samym torze co ty. Usłyszysz dźwięk w obu słuchawkach.</string>
+    <string name="tut_part0_swipe">Przesuń palcem od prawej do lewej strony, aby zmienić tor na prawy i uciec od przeszkody. </string>
+    <string name="tut_part0_tap">Stuknij po prawej stronie ekranu, aby zmienić tor na prawy i uciec od przeszkody. </string>
+    <string name="tut_part0_sensor">Przechyl urządzenie w prawo, aby zmienić tor na prawy i uciec od przeszkody. </string>
+
+    <string name="tut_part0_end">Gratulacje. Udało Ci się uciec!</string>
+
+    <string name="tut_part1">Masz włączone zatrzymywanie przed obiektem. Nauczymy cię teraz jak kontynuować grę, gdy pojawi się obiekt.
+        Ta część będzie pomijana w dalszej części samouczka. W trakcie gry musisz potwierdzać kontynuację gry przy obiekcie każdego typu.</string>
+    <string name="tut_part1_swipe">Przesuń palcem po ekranie w górę lub w dół, aby kontynuować grę.</string>
+    <string name="tut_part1_tap">Przytrzymaj długo palec na ekranie, aby kontynuować grę.</string>
+    <string name="tut_part1_sensor">Przechyl urządzenie w przód a następnie wróć do pierwotnej pozycji, aby kontynuować grę.</string>
+
+    <string name="tut_part2"> Za chwilę usłyszysz dźwięk symbolizujący punkt. Będzie umieszczony na torze po twojej lewej stronie.
+        Powinieneś usłyszeć dźwięk jedynie w lewej słuchawce.</string>
+
+    <string name="tut_part2_swipe">Przesuń palcem od lewej do prawej strony, aby zmienić tor na lewy i zdobyć punkt. </string>
+    <string name="tut_part2_tap">Stuknij po lewej stronie ekranu, aby zmienić tor na lewy i zdobyć punkt. </string>
+    <string name="tut_part2_sensor">Przechyl urządzenie w lewo, aby zmienić tor na lewy i zdobyć punkt. </string>
+
+    <string name="tut_part2_end">Gratulacje. Masz jeden punkt!</string>
+
+    <string name="tut_part3"> Za chwilę usłyszysz dźwięk symbolizujący dodatkowe życie. Przemieść się, aby je zdobyć.</string>
+    <string name="tut_part3_end">Niesamowite. Nie ma już nic więcej do nauki. Będziesz przeniesiony do menu głównego.</string>
+
+    <string name="game_over">Koniec gry.</string>
+    <string name="add_life">Życia: </string>
+    <string name="add_point">Punkty: </string>
 </resources>

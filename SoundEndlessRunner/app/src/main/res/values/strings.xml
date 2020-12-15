@@ -46,6 +46,39 @@
     <!-- Exit Fragment-->
     <string name="ef_message">Exit. Double tap to exit.</string>
 
+    <!-- Tutorial -->
+    <string name="tut_part0">"Hello in the tutorial. We will show you how to play the game.
+        In game you will be hearing one of three types of sounds, each symbolizing one type of object - obstacle, life or point.
+        You have to avoid obstacles. If you will fail running away you will lose one life. You can get additional lifes to play longer.
+        You can get points to get better score.
+        Soon you will hear sound which symbolize obstacle. Obstacle will be placed on the same track as you. You will hear sound in both earphones "</string>
+    <string name="tut_part0_swipe">Swipe right to move to next track and run away from obstacle. </string>
+    <string name="tut_part0_tap">Tap on the right side of screen to move to next track and run away from obstacle. </string>
+    <string name="tut_part0_sensor">Tilt device to right to move to next track and run away from obstacle. </string>
+
+    <string name="tut_part0_end">Congratulations. You ran away!</string>
+
+    <string name="tut_part1">You have stop enabled. We will teach you now how to continue game.
+        This part will be skipped in the rest of the tutorial.
+        In game, you will have to confirm continuing game with all object types</string>
+    <string name="tut_part1_swipe">You have to swipe up or down to move forward.</string>
+    <string name="tut_part1_tap">You have to press long to move forward.</string>
+    <string name="tut_part1_sensor">You have to tilt device forward and go back to previous position to move forward.</string>
+
+    <string name="tut_part2">Now you will hear sound symbolizing point. It will be placed on track on your left side. You should hear sound playing only in your left earphone</string>
+    <string name="tut_part2_swipe">Swipe left to move to previous track and get point. </string>
+    <string name="tut_part2_tap">Tap on the left side of screen to move to previous track and get point. </string>
+    <string name="tut_part2_sensor">Tilt device to left to move to previous track and get point. </string>
+
+    <string name="tut_part2_end">Congratulations. You got point!</string>
+
+    <string name="tut_part3">Now you will hear sound symbolizing additional life. Move yourself to get it.</string>
+    <string name="tut_part3_end">You are amazing. There is nothing more we can teach you. You will be moved to main menu.</string>
+
+    <string name="game_over">Game over.</string>
+    <string name="add_life">Lives: </string>
+    <string name="add_point">Points: </string>
+
     <!-- Shared preferences -->
     <string name="settings_volume" translatable="false">volume</string>
     <string name="settings_no_of_objects" translatable="false">frequency</string>
@@ -53,4 +86,5 @@
     <string name="settings_control" translatable="false">control</string>
     <string name="settings_stop_enable" translatable="false">stop</string>
     <string name="settings_language" translatable="false">language</string>
+    <string name="title_activity_tutorial" translatable="false">TutorialActivity</string>
 </resources>

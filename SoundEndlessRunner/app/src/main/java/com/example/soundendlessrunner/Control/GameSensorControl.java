@@ -3,17 +3,14 @@ package com.example.soundendlessrunner.Control;
 import android.hardware.SensorEvent;
 
 import com.example.soundendlessrunner.GameActivity;
-import com.example.soundendlessrunner.GameData;
 
 public class GameSensorControl {
-    final float MIN_ROTATION = 0.3f;
-    boolean resetedPosition = true;
+    protected final float MIN_ROTATION = 0.3f;
+    protected boolean resetedPosition = true;
 
-    private GameData gameData;
-    private GameActivity gameActivity;
+    protected GameActivity gameActivity;
 
-    public GameSensorControl(GameData gameData, GameActivity gameActivity) {
-        this.gameData = gameData;
+    public GameSensorControl(GameActivity gameActivity) {
         this.gameActivity = gameActivity;
     }
 
@@ -26,13 +23,11 @@ public class GameSensorControl {
         else if(resetedPosition == true){
             if(xVal > MIN_ROTATION){
                 resetedPosition = false;
-                gameData.moveRightIfPossible();
-                gameActivity.changeNoOfTrackTextAndSound();
+                gameActivity.moveRightIfPossible();
             }
             else if(xVal < -MIN_ROTATION){
                 resetedPosition = false;
-                gameData.moveLeftIfPossible();
-                gameActivity.changeNoOfTrackTextAndSound();
+                gameActivity.moveLeftIfPossible();
             }
         }
 

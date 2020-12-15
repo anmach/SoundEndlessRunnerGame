@@ -10,11 +10,8 @@ import java.util.Random;
  * @author Anna Mach
  */
 public class GameData {
-    private float timePlaying = 0;
-    private float startTime;
-
     private int points = 0;
-    private int lives = 3;
+    private int lives = 2;
     private int noOfPlayerTrack = 0;
     private int noOfObjectTrack = 0;
 
@@ -69,41 +66,33 @@ public class GameData {
         else{
             objectType = ObjectType.Obstacle;
         }
-
     }
 
     public boolean didWeDied() {
-        if (getDifferenceBetweenPlayerAndObjectTrack() == 0) {
-            if(objectType == ObjectType.Life){
-                lives++;
-            }
-            else if(objectType == ObjectType.Point) {
-                points++;
-            }
-            else{
-                //TODO remove life
-                return true;
-            }
+        if (lives == 0) {
+            return true;
         }
         return false;
     }
 
-    /**
-     * Adding points to already owned by player
-     *
-     * @param pointsToAdd number of points to add
-     */
-    public void addPoints(int pointsToAdd) {
-        points += pointsToAdd;
+    public void evaluateData(){
+        if(objectType == ObjectType.Life){
+            lives++;
+        }
+        else if(objectType == ObjectType.Point) {
+            points++;
+        }
+        else{
+            lives--;
+        }
     }
 
-    /**
-     * Adding lives to already owned by player
-     *
-     * @param livesToAdd number of lives to add
-     */
-    public void addLives(int livesToAdd) {
-        lives += livesToAdd;
+    public boolean didWeHit(){
+        if (getDifferenceBetweenPlayerAndObjectTrack() == 0) {
+            evaluateData();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -123,6 +112,12 @@ public class GameData {
     public int getNoOfObjectTrack() {
         return noOfObjectTrack;
     }
+
+    public int getPoints(){
+        return points;
+    }
+
+    public int getLives() {return lives;}
 
     public ObjectType getObjectType() {
         return objectType;

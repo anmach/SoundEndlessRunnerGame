@@ -44,6 +44,7 @@ public class MenuActivity extends AppCompatActivity {
                         if(currentFragment!= null){
                             currentFragment.repeatText();
                         }
+
                         Log.d("tts", "TTS initialization succes");
                         break;
                     case TextToSpeech.ERROR:
@@ -76,6 +77,30 @@ public class MenuActivity extends AppCompatActivity {
             tts.speak(getString(R.string.ma_exit_game), TextToSpeech.QUEUE_FLUSH, null);
         }
 
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        int noOfTracks = sharedPref.getInt(getString(R.string.settings_no_of_tracks), 3);
+        int noOfObjects = sharedPref.getInt(getString(R.string.settings_no_of_objects), 3);
+        int control = sharedPref.getInt(getString(R.string.settings_control), 0);
+        boolean stopEnabled = sharedPref.getBoolean(getString(R.string.settings_stop_enable), false);
+
+        Intent intent = new Intent(this, GameActivity.class);
+
+        intent.putExtra(getString(R.string.settings_no_of_tracks), noOfTracks);
+        intent.putExtra(getString(R.string.settings_no_of_objects), noOfObjects);
+        intent.putExtra(getString(R.string.settings_control), control);
+        intent.putExtra(getString(R.string.settings_stop_enable), stopEnabled);
+
+        while(tts.isSpeaking());
+        
+        startActivity(intent);
+    }
+
+    public void startTutorialActivity(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            tts.speak(getString(R.string.ma_exit_game),TextToSpeech.QUEUE_FLUSH,null,null);
+        } else {
+            tts.speak(getString(R.string.ma_exit_game), TextToSpeech.QUEUE_FLUSH, null);
+        }
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         int noOfTracks = sharedPref.getInt(getString(R.string.settings_no_of_tracks), 3);
@@ -83,20 +108,15 @@ public class MenuActivity extends AppCompatActivity {
         int control = sharedPref.getInt(getString(R.string.settings_control), 0);
         boolean stopEnabled = sharedPref.getBoolean(getString(R.string.settings_stop_enable), false);
 
-        Intent intent;
-        if(stopEnabled){
-            intent = new Intent(this, GameActivityWithStop.class);
-        }
-        else{
-            intent = new Intent(this, GameActivity.class);
-        }
+        Intent intent = new Intent(this, TutorialActivity.class);
 
         intent.putExtra(getString(R.string.settings_no_of_tracks), noOfTracks);
         intent.putExtra(getString(R.string.settings_no_of_objects), noOfObjects);
         intent.putExtra(getString(R.string.settings_control), control);
+        intent.putExtra(getString(R.string.settings_stop_enable), stopEnabled);
 
         while(tts.isSpeaking());
-        
+
         startActivity(intent);
     }
 }
