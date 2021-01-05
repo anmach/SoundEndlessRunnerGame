@@ -7,11 +7,15 @@
     <string name="next">Dalej</string>
     <string name="previous">Wstecz</string>
 
+    <string name="ma_exit_game">Aby wrócić do menu, dotknij ekranu czterema palcami.</string>
     <!-- Init Fragment-->
-    <string name="if_message">Witamy w dźwiękowej grze typu endless runner. Przewiń, aby poruszać się po menu. Stuknij aby usłyszeć informacje ponownie.</string>
+    <string name="if_message">Witamy w dźwiękowej grze typu endless runner. Przewiń, aby poruszać się po menu. Stuknij, aby usłyszeć informacje ponownie.</string>
     <!-- Start Game Fragment-->
+    <string name="sgf_message">Rozpocznij grę. Stuknij dwukrotnie, aby rozpocząć grę.</string>
     <!-- No of Tracks Fragment-->
-    <string name="notf_message">Tory. Stuknij dwukrotnie aby zmienić liczbę torów w grze.</string>
+    <string name="notf_message">Tory. Stuknij dwukrotnie, aby zmienić liczbę torów w grze.</string>
+    <string name="notf_message2">Przewiń aby zmienić liczbę torów. Stuknij dwukrotnie, aby zapisać i wrócić do menu.</string>
+    <string name="notf_max">Osiągnąłeś maksymalną liczbę torów.</string>
     <string name="notf_min">Osiągnąłeś minimalną liczbę torów.</string>
     <!-- Volume Fragment-->
     <string name="vf_message">Volume. Double tap to change volume.</string>
@@ -19,22 +23,24 @@
     <string name="vf_max">You already have maximum volume.</string>
     <string name="vf_min">You already have minimum volume.</string>
     <!-- Frequency Fragment-->
+    <string name="ff_message">Obiekty. Stuknij dwukrotnie, aby zmienić liczbę obiektów pojawiających się na minutę.</string>
+    <string name="ff_message2">Przewiń, aby zmienić liczbę obiektów pojawiających się na minutę. Stuknij dwukrotnie, aby zapisać i wrócić do menu.</string>
     <string name="ff_max">Osiągnąłeś minimalną liczbę obiektów.</string>
     <string name="ff_min">Osiągnąłeś maksymalną liczbę obiektów.</string>
     <!-- Control Fragment-->
-    <string name="cf_message">Sterowanie. Stuknij dwukrotnie aby zmienić sterowanie.</string>
-    <string name="cf_message2">Przewiń aby zminić sterowanie. Stuknij dwukrotnie aby zapisać i powrócić do menu.</string>
+    <string name="cf_message">Sterowanie. Stuknij dwukrotnie, aby zmienić sterowanie.</string>
+    <string name="cf_message2">Przewiń aby zminić sterowanie. Stuknij dwukrotnie, aby zapisać i powrócić do menu.</string>
     <string name="cf_option0">Przewijanie</string>
     <string name="cf_option1">Akcelerometr</string>
     <string name="cf_option2">Rozpoznawanie mowy</string>
     <string name="cf_option3">Stukanie po bokach ekranu</string>
     <!-- Enable Stop Fragment-->
-    <string name="esf_message_enabled">Wyłącz zatrzymywanie przed przeszkodą. Stuknij dwukrotnie aby wyłączyć zatrzymywanie przed przeszkodą.</string>
-    <!-- Language Fragment-->
-    <string name="lf_message">Język. Stuknij dwukrotnie aby zmienić język.</string>
+    <string name="esf_message_enabled">Wyłącz zatrzymywanie przed przeszkodą. Stuknij dwukrotnie, aby wyłączyć zatrzymywanie przed przeszkodą.</string>
+    <string name="esf_message_disabled">Włącz zatrzymywanie przed przeszkodą. Stuknij dwukrotnie, aby włączyć zatrzymywanie przed przeszkodą.</string>
     <!-- Start Tutorial Fragment-->
+    <string name="stf_message">Samouczek. Stuknij dwukrotnie, aby włączyć samouczek.</string>
     <!-- Exit Fragment-->
-    <string name="ef_message">Wyjście. Stuknij dwukrotnie aby wyjść z gry.</string>
+    <string name="ef_message">Wyjście. Stuknij dwukrotnie, aby wyjść z gry.</string>
 
     <!-- Shared preferences -->
     <string name="settings_volume">volume</string>
@@ -43,15 +49,6 @@
     <string name="settings_control">control</string>
     <string name="settings_stop_enable">stop</string>
     <string name="settings_language">language</string>
-    <string name="sgf_message">Rozpocznij grę. Stuknij dwukrotnie aby rozpocząć grę.</string>
-    <string name="notf_message2">Przewiń aby zmienić liczbę torów. Stuknij dwukrotnie aby zapisać i wrócić do menu.</string>
-    <string name="notf_max">Osiągnąłeś maksymalną liczbę torów.</string>
-    <string name="ff_message">Obiekty. Stuknij dwukrotnie aby zmienić liczbę obiektów pojawiających się na minutę.</string>
-    <string name="ff_message2">Przewiń aby zmienić liczbę obiektów pojawiających się na minutę. Stuknij dwukrotnie aby zapisać i wrócić do menu.</string>
-    <string name="esf_message_disabled">Włącz zatrzymywanie przed przeszkodą. Stuknij dwukrotnie aby włączyć zatrzymywanie przed przeszkodą.</string>
-    <string name="lf_message2">Przewiń aby zmienić język. Stuknij dwukrotnie aby zapisać i powrócić do menu głównego.</string>
-    <string name="stf_message">Samouczek. Stuknij dwukrotnie aby włączyć samouczek.</string>
-    <string name="ma_exit_game">Aby wrócić do menu, dotknij ekranu czterema palcami.</string>
 
     <string name="tut_part0">Witamy w samouczku. Nauczymy cię tutaj jak grać w grę. W trakcie gry będziesz słyszeć jeden z trzech typów dźwięków, każdy symbolizujący jeden typ obiektu - przeszkodę, życie lub punkt.
         Musisz unikać przeszkód. Jeśli nie uda ci się uniknąć przeszkody, stracisz jedno życie. Możesz zdobywać dodatkowe życia, aby grać dłużej.

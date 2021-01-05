@@ -91,22 +91,9 @@
 
         <action
             android:id="@+id/action_next"
-            app:destination="@id/ExitFragment" />
-        <action
-            android:id="@+id/action_previous"
-            app:destination="@id/EnableStopFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/ExitFragment"
-        android:name="com.example.soundendlessrunner.MenuFragments.ExitFragment"
-        tools:layout="@layout/fragment_start_game">
-
-        <action
-            android:id="@+id/action_next"
             app:destination="@id/StartGameFragment" />
         <action
             android:id="@+id/action_previous"
-            app:destination="@id/StartTutorialFragment" />
+            app:destination="@id/EnableStopFragment" />
     </fragment>
 </navigation>

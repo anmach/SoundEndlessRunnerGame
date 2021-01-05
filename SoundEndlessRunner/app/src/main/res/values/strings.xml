@@ -38,9 +38,6 @@
     <!-- Enable Stop Fragment-->
     <string name="esf_message_disabled">Enable stop. Double tap to enable stopping in game.</string>
     <string name="esf_message_enabled">Disable stop. Double tap to disable stopping in game</string>
-    <!-- Language Fragment-->
-    <string name="lf_message">Language. Double tap to change language.</string>
-    <string name="lf_message2">Swipe to change language. Double tap to save and go back to menu.</string>
     <!-- Start Tutorial Fragment-->
     <string name="stf_message">Tutorial. Double tap to start the tutorial.</string>
     <!-- Exit Fragment-->
