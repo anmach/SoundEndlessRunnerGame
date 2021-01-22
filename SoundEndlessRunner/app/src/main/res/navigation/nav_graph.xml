@@ -91,9 +91,35 @@
 
         <action
             android:id="@+id/action_next"
-            app:destination="@id/StartGameFragment" />
+            app:destination="@id/CreditsFragment" />
         <action
             android:id="@+id/action_previous"
             app:destination="@id/EnableStopFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/CreditsFragment"
+        android:name="com.example.soundendlessrunner.MenuFragments.CreditsFragment"
+        tools:layout="@layout/fragment_credits">
+
+        <action
+            android:id="@+id/action_next"
+            app:destination="@id/ExitFragment" />
+        <action
+            android:id="@+id/action_previous"
+            app:destination="@id/StartTutorialFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ExitFragment"
+        android:name="com.example.soundendlessrunner.MenuFragments.CreditsFragment"
+        tools:layout="@layout/fragment_credits">
+
+        <action
+            android:id="@+id/action_next"
+            app:destination="@id/StartGameFragment" />
+        <action
+            android:id="@+id/action_previous"
+            app:destination="@id/CreditsFragment" />
     </fragment>
 </navigation>

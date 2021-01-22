@@ -48,11 +48,7 @@ public class MenuFragment extends Fragment {
     protected void previousMethod() {}
 
     public void repeatText() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            tts.speak(message,TextToSpeech.QUEUE_FLUSH,null,null);
-        } else {
-            tts.speak(message, TextToSpeech.QUEUE_FLUSH, null);
-        }
+        tts.speak(message,TextToSpeech.QUEUE_FLUSH,null,null);
     }
 
     //TODO: Change method name...

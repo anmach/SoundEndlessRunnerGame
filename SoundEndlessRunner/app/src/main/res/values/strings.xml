@@ -40,6 +40,15 @@
     <string name="esf_message_enabled">Disable stop. Double tap to disable stopping in game</string>
     <!-- Start Tutorial Fragment-->
     <string name="stf_message">Tutorial. Double tap to start the tutorial.</string>
+    <!-- Credits Fragment-->
+    <string name="crf_message">Credits. Double tap to hear who is author.</string>
+    <string name="crf_message2">Game author: Anna Mach.
+        Sounds are from website freesound.org on creative commons license.
+        Heartbeat sound by InspectorJ - www.jshaw.co.uk.
+        Sword sound by giddster.
+        Money bag sound by PhilSavlem.
+        Double tap to go back to menu.
+    </string>
     <!-- Exit Fragment-->
     <string name="ef_message">Exit. Double tap to exit.</string>
 

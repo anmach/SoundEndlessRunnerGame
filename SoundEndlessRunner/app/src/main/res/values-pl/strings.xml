@@ -39,6 +39,15 @@
     <string name="esf_message_disabled">Włącz zatrzymywanie przed przeszkodą. Stuknij dwukrotnie, aby włączyć zatrzymywanie przed przeszkodą.</string>
     <!-- Start Tutorial Fragment-->
     <string name="stf_message">Samouczek. Stuknij dwukrotnie, aby włączyć samouczek.</string>
+    <!-- Credits Fragment-->
+    <string name="crf_message">Autorzy. Stuknij dwukrotnie, aby usłyszeć kto jest autorem.</string>
+    <string name="crf_message2">Autor gry: Anna Mach.
+        Dźwięki pochodzą ze strony freesound.org na licencji creative commons.
+        Dźwięk bicia serca stworzony przez InspectorJ - www.jshaw.co.uk.
+        Dźwięk miecza stworzony przez giddster.
+        Dźwięk sakiewki z monetami stworzony przez PhilSavlem.
+        Stuknij dwukrotnie, aby powrócić do menu.
+    </string>
     <!-- Exit Fragment-->
     <string name="ef_message">Wyjście. Stuknij dwukrotnie, aby wyjść z gry.</string>
 

@@ -143,8 +143,6 @@ public class GameActivity  extends AppCompatActivity implements SensorEventListe
             }
             else{
                 if(gameData.didWeDied()){
-                    ttsSpeak(getString(R.string.game_over) + getString(R.string.add_point) + gameData.getPoints());
-                    while(tts.isSpeaking());
                     this.startMenuActivity();
                 }
                 else{
@@ -209,7 +207,10 @@ public class GameActivity  extends AppCompatActivity implements SensorEventListe
     }
 
     public void startMenuActivity() {
+        ttsSpeak(getString(R.string.game_over) + getString(R.string.add_point) + gameData.getPoints());
+        while(tts.isSpeaking());
         tts.stop();
+
         if(exec != null){
             exec.shutdownNow();
         }
