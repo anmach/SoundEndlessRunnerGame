@@ -3,15 +3,14 @@ package com.example.soundendlessrunner.Control;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
-import com.example.soundendlessrunner.GameActivity;
+import com.example.soundendlessrunner.GameManager;
 
 public class GameTapControl extends GestureDetector.SimpleOnGestureListener {
-    //TODO: get screen center somehow
-    protected float screenCenter = 500;
-    protected GameActivity gameActivity;
+    protected float screenCenter;
+    protected GameManager gameManager;
 
-    public GameTapControl(GameActivity gameActivity, float screenCenter) {
-        this.gameActivity = gameActivity;
+    public GameTapControl(GameManager gameManager, float screenCenter) {
+        this.gameManager = gameManager;
         this.screenCenter = screenCenter;
     }
 
@@ -19,9 +18,9 @@ public class GameTapControl extends GestureDetector.SimpleOnGestureListener {
     public boolean onSingleTapUp(MotionEvent e) {
         float position = e.getRawX();
         if (position >= screenCenter) {
-            gameActivity.moveRightIfPossible();
+            gameManager.moveRightIfPossible();
         } else {
-            gameActivity.moveLeftIfPossible();
+            gameManager.moveLeftIfPossible();
         }
         return super.onSingleTapUp(e);
     }

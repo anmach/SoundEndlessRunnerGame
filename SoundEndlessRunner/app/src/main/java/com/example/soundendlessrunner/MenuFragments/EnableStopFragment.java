@@ -3,7 +3,6 @@ package com.example.soundendlessrunner.MenuFragments;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 
 import com.example.soundendlessrunner.R;
 
@@ -23,7 +22,7 @@ public class EnableStopFragment extends MenuFragment {
         } else {
             message = getString(R.string.esf_message_disabled);
         }
-        repeatText();
+        sayMessage();
     }
 
     @Override
@@ -41,7 +40,7 @@ public class EnableStopFragment extends MenuFragment {
             editor.putBoolean(getString(R.string.settings_stop_enable), stopEnabled);
             editor.apply();
         }
-        tts.speak(message, TextToSpeech.QUEUE_FLUSH, null);
+        sayMessage();
     }
 
 }

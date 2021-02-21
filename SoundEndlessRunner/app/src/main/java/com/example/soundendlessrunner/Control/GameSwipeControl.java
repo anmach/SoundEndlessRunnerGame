@@ -3,17 +3,17 @@ package com.example.soundendlessrunner.Control;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
-import com.example.soundendlessrunner.GameActivity;
+import com.example.soundendlessrunner.GameManager;
 
 public class GameSwipeControl extends GestureDetector.SimpleOnGestureListener {
     protected static final int SWIPE_MIN_DISTANCE = 120;
     protected static final int SWIPE_MAX_OFF_PATH = 250;
     protected static final int SWIPE_THRESHOLD_VELOCITY = 200;
 
-    protected GameActivity gameActivity;
+    protected GameManager gameManager;
 
-    public GameSwipeControl(GameActivity gameActivity) {
-        this.gameActivity = gameActivity;
+    public GameSwipeControl(GameManager gameManager) {
+        this.gameManager = gameManager;
     }
 
     @Override
@@ -25,12 +25,12 @@ public class GameSwipeControl extends GestureDetector.SimpleOnGestureListener {
             // right to left swipe
             if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
                     && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                gameActivity.moveRightIfPossible();
+                gameManager.moveRightIfPossible();
             }
             // left to right swipe
             else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
                     && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                gameActivity.moveLeftIfPossible();
+                gameManager.moveLeftIfPossible();
             }
         } catch (Exception e) {
         }

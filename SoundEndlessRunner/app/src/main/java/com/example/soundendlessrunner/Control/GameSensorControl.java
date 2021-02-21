@@ -2,16 +2,16 @@ package com.example.soundendlessrunner.Control;
 
 import android.hardware.SensorEvent;
 
-import com.example.soundendlessrunner.GameActivity;
+import com.example.soundendlessrunner.GameManager;
 
 public class GameSensorControl {
     protected final float MIN_ROTATION = 0.3f;
     protected boolean resetedPosition = true;
 
-    protected GameActivity gameActivity;
+    protected GameManager gameManager;
 
-    public GameSensorControl(GameActivity gameActivity) {
-        this.gameActivity = gameActivity;
+    public GameSensorControl(GameManager gameManager) {
+        this.gameManager = gameManager;
     }
 
     public void manageEvent(SensorEvent sensorEvent){
@@ -23,11 +23,11 @@ public class GameSensorControl {
         else if(resetedPosition == true){
             if(xVal > MIN_ROTATION){
                 resetedPosition = false;
-                gameActivity.moveRightIfPossible();
+                gameManager.moveRightIfPossible();
             }
             else if(xVal < -MIN_ROTATION){
                 resetedPosition = false;
-                gameActivity.moveLeftIfPossible();
+                gameManager.moveLeftIfPossible();
             }
         }
 

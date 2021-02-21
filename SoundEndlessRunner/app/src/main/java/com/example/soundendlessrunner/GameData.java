@@ -6,8 +6,6 @@ import java.util.Random;
 
 /**
  * Class containing game data
- *
- * @author Anna Mach
  */
 public class GameData {
     private int points = 0;
@@ -38,29 +36,33 @@ public class GameData {
     /**
      * Changing player track to one to right (number higher by 1) if it is not already last track
      */
-    public void moveRightIfPossible() {
+    public boolean moveRightIfPossible() {
         if (noOfPlayerTrack < noOfTracks) {
             noOfPlayerTrack++;
+            return true;
         }
+        return false;
     }
 
     /**
      * Changing player track to one to left (number lower by 1) if it is not already first track
      */
-    public void moveLeftIfPossible() {
+    public boolean moveLeftIfPossible() {
         if (noOfPlayerTrack > 0) {
             noOfPlayerTrack--;
+            return true;
         }
+        return false;
     }
 
     public void drawObject() {
         noOfObjectTrack = generator.nextInt(noOfTracks + 1);
 
-        int drawed = generator.nextInt(100);
-        if(drawed<10){
+        int drawn = generator.nextInt(100);
+        if(drawn<20){
             objectType = ObjectType.Life;
         }
-        if(drawed < 30){
+        if(drawn < 50){
             objectType = ObjectType.Point;
         }
         else{
@@ -75,7 +77,7 @@ public class GameData {
         return false;
     }
 
-    public void evaluateData(){
+    public void evaluateCollisionConsequences(){
         if(objectType == ObjectType.Life){
             lives++;
         }
@@ -89,7 +91,7 @@ public class GameData {
 
     public boolean didWeHit(){
         if (getDifferenceBetweenPlayerAndObjectTrack() == 0) {
-            evaluateData();
+            evaluateCollisionConsequences();
             return true;
         }
         return false;
@@ -102,15 +104,6 @@ public class GameData {
      */
     public int getNoOfPlayerTrack() {
         return noOfPlayerTrack + 1;
-    }
-
-    /**
-     * Getter for number of object track
-     *
-     * @return no of object track
-     */
-    public int getNoOfObjectTrack() {
-        return noOfObjectTrack;
     }
 
     public int getPoints(){
@@ -134,5 +127,9 @@ public class GameData {
      */
     public long getTimeBetweenObjects() {
         return timeBetweenObjects;
+    }
+
+    public void setNoOfObjectTrack(int noOfTrack){
+        noOfObjectTrack = noOfTrack - 1;
     }
 }

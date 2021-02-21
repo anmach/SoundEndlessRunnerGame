@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Dźwiękowy Bieg Bez Końca</string>
     <string name="action_settings">Ustawienia</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -13,30 +14,29 @@
     <!-- Start Game Fragment-->
     <string name="sgf_message">Rozpocznij grę. Stuknij dwukrotnie, aby rozpocząć grę.</string>
     <!-- No of Tracks Fragment-->
+    <string name="notf_title">Liczba torów.</string>
     <string name="notf_message">Tory. Stuknij dwukrotnie, aby zmienić liczbę torów w grze.</string>
-    <string name="notf_message2">Przewiń aby zmienić liczbę torów. Stuknij dwukrotnie, aby zapisać i wrócić do menu.</string>
+    <string name="notf_message2">Przewiń aby zmienić liczbę torów. Stuknij dwukrotnie, aby zapisać i wrócić do menu. Aktualna liczba torów: </string>
     <string name="notf_max">Osiągnąłeś maksymalną liczbę torów.</string>
     <string name="notf_min">Osiągnąłeś minimalną liczbę torów.</string>
-    <!-- Volume Fragment-->
-    <string name="vf_message">Volume. Double tap to change volume.</string>
-    <string name="vf_message2">Swipe to change volume. Double tap to save and go back to menu.</string>
-    <string name="vf_max">You already have maximum volume.</string>
-    <string name="vf_min">You already have minimum volume.</string>
     <!-- Frequency Fragment-->
+    <string name="ff_title">Liczba obiektów.</string>
     <string name="ff_message">Obiekty. Stuknij dwukrotnie, aby zmienić liczbę obiektów pojawiających się na minutę.</string>
-    <string name="ff_message2">Przewiń, aby zmienić liczbę obiektów pojawiających się na minutę. Stuknij dwukrotnie, aby zapisać i wrócić do menu.</string>
+    <string name="ff_message2">Przewiń, aby zmienić liczbę obiektów pojawiających się na minutę. Stuknij dwukrotnie, aby zapisać i wrócić do menu. Aktualna liczba obiektów: </string>
     <string name="ff_max">Osiągnąłeś minimalną liczbę obiektów.</string>
     <string name="ff_min">Osiągnąłeś maksymalną liczbę obiektów.</string>
     <!-- Control Fragment-->
+    <string name="cf_title">Sterowanie.</string>
     <string name="cf_message">Sterowanie. Stuknij dwukrotnie, aby zmienić sterowanie.</string>
-    <string name="cf_message2">Przewiń aby zminić sterowanie. Stuknij dwukrotnie, aby zapisać i powrócić do menu.</string>
+    <string name="cf_message2">Przewiń aby zminić sterowanie. Stuknij dwukrotnie, aby zapisać i powrócić do menu. </string>
     <string name="cf_option0">Przewijanie</string>
     <string name="cf_option1">Akcelerometr</string>
     <string name="cf_option2">Rozpoznawanie mowy</string>
     <string name="cf_option3">Stukanie po bokach ekranu</string>
     <!-- Enable Stop Fragment-->
-    <string name="esf_message_enabled">Wyłącz zatrzymywanie przed przeszkodą. Stuknij dwukrotnie, aby wyłączyć zatrzymywanie przed przeszkodą.</string>
-    <string name="esf_message_disabled">Włącz zatrzymywanie przed przeszkodą. Stuknij dwukrotnie, aby włączyć zatrzymywanie przed przeszkodą.</string>
+    <string name="esf_title">Zatrzymywanie przed przeszkodą.</string>
+    <string name="esf_message_enabled">Zatrzymywanie przed przeszkodą włączone. Stuknij dwukrotnie, aby wyłączyć zatrzymywanie przed przeszkodą.</string>
+    <string name="esf_message_disabled">Zatrzymywanie przed przeszkodą wyłączone. Stuknij dwukrotnie, aby włączyć zatrzymywanie przed przeszkodą.</string>
     <!-- Start Tutorial Fragment-->
     <string name="stf_message">Samouczek. Stuknij dwukrotnie, aby włączyć samouczek.</string>
     <!-- Credits Fragment-->
@@ -78,7 +78,6 @@
 
     <string name="tut_part2"> Za chwilę usłyszysz dźwięk symbolizujący punkt. Będzie umieszczony na torze po twojej lewej stronie.
         Powinieneś usłyszeć dźwięk jedynie w lewej słuchawce.</string>
-
     <string name="tut_part2_swipe">Przesuń palcem od lewej do prawej strony, aby zmienić tor na lewy i zdobyć punkt. </string>
     <string name="tut_part2_tap">Stuknij po lewej stronie ekranu, aby zmienić tor na lewy i zdobyć punkt. </string>
     <string name="tut_part2_sensor">Przechyl urządzenie w lewo, aby zmienić tor na lewy i zdobyć punkt. </string>

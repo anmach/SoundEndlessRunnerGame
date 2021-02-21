@@ -25,11 +25,11 @@
         tools:layout="@layout/fragment_start_game">
 
         <action
-            android:id="@+id/action_next"
-            app:destination="@id/NoOfTracksFragment" />
-        <action
             android:id="@+id/action_previous"
             app:destination="@id/StartTutorialFragment" />
+        <action
+            android:id="@+id/action_next"
+            app:destination="@id/NoOfTracksFragment" />
     </fragment>
 
     <fragment
@@ -38,11 +38,11 @@
         tools:layout="@layout/fragment_no_of_tracks">
 
         <action
-            android:id="@+id/action_next"
-            app:destination="@id/FrequencyFragment" />
-        <action
             android:id="@+id/action_previous"
             app:destination="@id/StartGameFragment" />
+        <action
+            android:id="@+id/action_next"
+            app:destination="@id/FrequencyFragment" />
     </fragment>
 
     <fragment
@@ -51,11 +51,11 @@
         tools:layout="@layout/fragment_frequency">
 
         <action
-            android:id="@+id/action_next"
-            app:destination="@id/ControlFragment" />
-        <action
             android:id="@+id/action_previous"
             app:destination="@id/NoOfTracksFragment" />
+        <action
+            android:id="@+id/action_next"
+            app:destination="@id/ControlFragment" />
     </fragment>
 
     <fragment
@@ -64,11 +64,11 @@
         tools:layout="@layout/fragment_control">
 
         <action
-            android:id="@+id/action_next"
-            app:destination="@id/EnableStopFragment" />
-        <action
             android:id="@+id/action_previous"
             app:destination="@id/FrequencyFragment" />
+        <action
+            android:id="@+id/action_next"
+            app:destination="@id/EnableStopFragment" />
     </fragment>
 
     <fragment
@@ -77,24 +77,11 @@
         tools:layout="@layout/fragment_enable_stop">
 
         <action
-            android:id="@+id/action_next"
-            app:destination="@id/StartTutorialFragment" />
-        <action
             android:id="@+id/action_previous"
             app:destination="@id/ControlFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/StartTutorialFragment"
-        android:name="com.example.soundendlessrunner.MenuFragments.StartTutorialFragment"
-        tools:layout="@layout/fragment_start_tutorial">
-
         <action
             android:id="@+id/action_next"
             app:destination="@id/CreditsFragment" />
-        <action
-            android:id="@+id/action_previous"
-            app:destination="@id/EnableStopFragment" />
     </fragment>
 
     <fragment
@@ -103,11 +90,11 @@
         tools:layout="@layout/fragment_credits">
 
         <action
+            android:id="@+id/action_previous"
+            app:destination="@id/EnableStopFragment" />
+        <action
             android:id="@+id/action_next"
             app:destination="@id/ExitFragment" />
-        <action
-            android:id="@+id/action_previous"
-            app:destination="@id/StartTutorialFragment" />
     </fragment>
 
     <fragment
@@ -116,10 +103,23 @@
         tools:layout="@layout/fragment_credits">
 
         <action
-            android:id="@+id/action_next"
-            app:destination="@id/StartGameFragment" />
-        <action
             android:id="@+id/action_previous"
             app:destination="@id/CreditsFragment" />
+        <action
+            android:id="@+id/action_next"
+            app:destination="@id/StartTutorialFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/StartTutorialFragment"
+        android:name="com.example.soundendlessrunner.MenuFragments.StartTutorialFragment"
+        tools:layout="@layout/fragment_start_tutorial">
+
+        <action
+            android:id="@+id/action_previous"
+            app:destination="@id/ExitFragment" />
+        <action
+            android:id="@+id/action_next"
+            app:destination="@id/StartGameFragment" />
     </fragment>
 </navigation>

@@ -1,6 +1,5 @@
 package com.example.soundendlessrunner.MenuFragments;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 
@@ -12,10 +11,10 @@ import com.example.soundendlessrunner.R;
 
 
 public class MenuFragment extends Fragment {
-    protected TextToSpeech tts;
+    private TextToSpeech tts;
     protected String message = "";
 
-    //TODO: Change variable name...
+    //Showing if user chose to interact with fragment
     protected boolean wasFragmentChosen = false;
 
     @Override
@@ -27,7 +26,7 @@ public class MenuFragment extends Fragment {
 
     public void next() {
         if (wasFragmentChosen) {
-            nextMethod();
+            nextOption();
         } else {
             NavHostFragment.findNavController(this).navigate(R.id.action_next);
         }
@@ -35,23 +34,24 @@ public class MenuFragment extends Fragment {
 
     public void previous() {
         if (wasFragmentChosen) {
-            previousMethod();
+            previousOption();
         } else {
             NavHostFragment.findNavController(this).navigate(R.id.action_previous);
         }
     }
 
-    //TODO: Change method name...
-    protected void nextMethod() {}
+    protected void nextOption() {}
 
-    //TODO: Change method name...
-    protected void previousMethod() {}
+    protected void previousOption() {}
 
-    public void repeatText() {
-        tts.speak(message,TextToSpeech.QUEUE_FLUSH,null,null);
+    public void sayMessage() {
+        tts.speak(message, TextToSpeech.QUEUE_FLUSH,null,null);
     }
 
-    //TODO: Change method name...
+    public void useTTS(String msg){
+        tts.speak(msg, TextToSpeech.QUEUE_FLUSH,null,null);
+    }
+
     public void changeWasFragmentChosen() {
         wasFragmentChosen = !wasFragmentChosen;
     }

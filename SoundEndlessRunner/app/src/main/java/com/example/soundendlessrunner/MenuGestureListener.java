@@ -24,7 +24,7 @@ public class MenuGestureListener extends GestureDetector.SimpleOnGestureListener
     @Override
     public boolean onSingleTapUp(MotionEvent e) {
         if (menuFragment != null) {
-            menuFragment.repeatText();
+            menuFragment.sayMessage();
         }
 
         return super.onSingleTapUp(e);

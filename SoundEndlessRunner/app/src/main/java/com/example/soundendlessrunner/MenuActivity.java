@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 import com.example.soundendlessrunner.MenuFragments.MenuFragment;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
@@ -18,7 +18,7 @@ import android.view.MotionEvent;
 import java.util.Locale;
 
 
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends FragmentActivity {
     private GestureDetector detector;
     private MenuGestureListener menuGestureListener;
     private TextToSpeech tts;
@@ -42,7 +42,7 @@ public class MenuActivity extends AppCompatActivity {
                         }
 
                         if(currentFragment!= null){
-                            currentFragment.repeatText();
+                            currentFragment.sayMessage();
                         }
 
                         Log.d("tts", "TTS initialization succes");
@@ -90,9 +90,18 @@ public class MenuActivity extends AppCompatActivity {
         intent.putExtra(getString(R.string.settings_control), control);
         intent.putExtra(getString(R.string.settings_stop_enable), stopEnabled);
 
-        while(tts.isSpeaking());
+        while(tts.isSpeaking()){}
         
         startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(currentFragment != null){
+            currentFragment.sayMessage();
+        }
     }
 
     public void startTutorialActivity(){

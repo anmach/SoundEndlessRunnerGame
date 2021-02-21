@@ -1,6 +1,7 @@
 package com.example.soundendlessrunner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.os.HandlerCompat;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,13 +9,13 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.widget.TextView;
 
 import com.example.soundendlessrunner.Control.ControlWithStop.GameSensorControlWithStop;
 import com.example.soundendlessrunner.Control.ControlWithStop.GameSwipeControlWithStop;
@@ -23,26 +24,25 @@ import com.example.soundendlessrunner.Control.GameSensorControl;
 import com.example.soundendlessrunner.Control.GameSwipeControl;
 import com.example.soundendlessrunner.Control.GameTapControl;
 import com.example.soundendlessrunner.Enums.ControlType;
-import com.example.soundendlessrunner.Enums.ObjectType;
 
 import java.util.Locale;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 public class GameActivity  extends AppCompatActivity implements SensorEventListener {
-    GameData gameData;
     protected TextToSpeech tts;
     protected GestureDetector detector;
-    protected SoundManager soundManager;
-    ScheduledThreadPoolExecutor exec;
 
     // Sensor
     protected GameSensorControl gameSensorControl;
     protected SensorManager sensorManager;
     protected Sensor sensor;
 
-    protected boolean withStop;
     protected int control;
+    protected boolean withStop;
+
+    protected GameManager gameManager;
+
+    private Thread thread;
+    protected Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,42 +57,59 @@ public class GameActivity  extends AppCompatActivity implements SensorEventListe
         control = intent.getIntExtra(getString(R.string.settings_control), 0);
         withStop = intent.getBooleanExtra(getString(R.string.settings_stop_enable), false);
 
-        gameData = new GameData(noOfTracks, noOfObjects);
-        soundManager = new SoundManager(this, gameData.getTimeBetweenObjects());
+        setControls();
 
+        handler = HandlerCompat.createAsync(Looper.getMainLooper());
+
+        init(noOfTracks, noOfObjects);
+    }
+
+    protected void init(int noOfTracks, int noOfObjects){
+        gameManager = new GameManager(noOfTracks, noOfObjects, this, handler);
+        runGame();
+    }
+
+    protected void setControls(){
         if (control == ControlType.SWIPES.getValue()) {
             GameSwipeControl gameSwipeControl;
             if(withStop){
-                gameSwipeControl = new GameSwipeControlWithStop(this);
+                gameSwipeControl = new GameSwipeControlWithStop(gameManager);
             }
             else{
-                gameSwipeControl = new GameSwipeControl(this);
+                gameSwipeControl = new GameSwipeControl(gameManager);
             }
             detector = new GestureDetector(this, gameSwipeControl);
         }
         else if(control == ControlType.TAPS.getValue()){
-            //TODO: Get screen center
+            int screenCenter = this.getResources().getDisplayMetrics().widthPixels / 2;
             GameTapControl gameTapControl;
             if(withStop){
-                gameTapControl = new GameTapControlWithStop(this, 500);;
+                gameTapControl = new GameTapControlWithStop(gameManager, screenCenter);;
             }
             else{
-                gameTapControl = new GameTapControl(this, 500);
+                gameTapControl = new GameTapControl(gameManager, screenCenter);
             }
             detector = new GestureDetector(this, gameTapControl);
         }
         else{
             if(withStop){
-                gameSensorControl = new GameSensorControlWithStop(this);
+                gameSensorControl = new GameSensorControlWithStop(gameManager);
             }
             else{
-                gameSensorControl = new GameSensorControl(this);
+                gameSensorControl = new GameSensorControl(gameManager);
             }
             sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
             sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
         }
+    }
 
-        runGame();
+    protected void runGame(){
+        gameManager.play();
+
+        if(!withStop){
+            thread = new Thread(gameManager);
+            thread.start();
+        }
     }
 
     public void initTTS(){
@@ -105,9 +122,6 @@ public class GameActivity  extends AppCompatActivity implements SensorEventListe
                             Log.d("tts", Locale.getDefault().toLanguageTag());
                             tts.setLanguage(Locale.UK);
                         }
-
-                        Log.d("tts", "TTS initialization succes");
-
                         break;
                     case TextToSpeech.ERROR:
                         Log.d("tts", "TTS initialization failed");
@@ -117,117 +131,29 @@ public class GameActivity  extends AppCompatActivity implements SensorEventListe
         });
     }
 
-    public void runGame(){
-        if(withStop){
-            gameData.drawObject();
-            playSound();
-        }
-        else{
-            gameData.drawObject();
-            playSound();
-
-            exec = new ScheduledThreadPoolExecutor(1);
-            exec.scheduleAtFixedRate(new Runnable() {
-                public void run() {
-                    continueGame();
-                }
-            }, gameData.getTimeBetweenObjects(), gameData.getTimeBetweenObjects(), TimeUnit.MILLISECONDS);
-        }
-    }
-
-    public void continueGame(){
-        if(gameData.didWeHit()){
-            ObjectType type = gameData.getObjectType();
-            if(type == ObjectType.Point){
-                ttsSpeak(getString(R.string.add_point) + gameData.getPoints());
-            }
-            else{
-                if(gameData.didWeDied()){
-                    this.startMenuActivity();
-                }
-                else{
-                    ttsSpeak(getString(R.string.add_life) + gameData.getLives());
-                }
-            }
+    public void endGame() {
+        if(thread != null){
+            thread.interrupt();
         }
 
-        gameData.drawObject();
-        soundManager.stopPlayingSound();
-        playSound();
-    }
+        gameManager.stop();
 
-    protected void playSound(){
-        ObjectType objectType = gameData.getObjectType();
-        if(objectType == ObjectType.Life){
-            soundManager.playHeartSound();
-        }
-        else if(objectType == ObjectType.Point) {
-            soundManager.playPointSound();
-        }
-        else{
-            soundManager.playObstacleSound();
-        }
+        ttsSpeak(getString(R.string.game_over) + getString(R.string.add_point) + gameManager.getPoints());
 
-        adjustVolume();
-    }
+        while(tts.isSpeaking()){}
 
-    public void adjustVolume(){
-        int difference = gameData.getDifferenceBetweenPlayerAndObjectTrack();
-        if(difference == 0){
-            soundManager.setVolume(1,1f);
-        }
-        else if(difference > 0){
-            float volume = 1 - (0.1f * difference);
-            soundManager.setVolume(volume, 0);
-        }
-        else{
-            difference -= 2*difference;
-            float volume = 1 - (0.1f * difference);
-            soundManager.setVolume(0, volume);
-        }
-    }
-
-    public void changeNoOfTrackTextAndSound() {
-        int number = gameData.getNoOfPlayerTrack();
-        String no = Integer.toString(number);
-        TextView textView = (TextView) findViewById(R.id.textViewNoOfTrack);
-        textView.setText(no);
-
-        adjustVolume();
-    }
-
-    public void moveLeftIfPossible(){
-        gameData.moveLeftIfPossible();
-        changeNoOfTrackTextAndSound();
-    }
-
-    public void moveRightIfPossible(){
-        gameData.moveRightIfPossible();
-        changeNoOfTrackTextAndSound();
-    }
-
-    public void startMenuActivity() {
-        ttsSpeak(getString(R.string.game_over) + getString(R.string.add_point) + gameData.getPoints());
-        while(tts.isSpeaking());
-        tts.stop();
-
-        if(exec != null){
-            exec.shutdownNow();
-        }
-        soundManager.stopPlayingSound();
-        Intent intent = new Intent(this, MenuActivity.class);
-        startActivity(intent);
+        GameActivity.this.finish();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        tts.stop();
-        if(exec != null){
-            exec.shutdownNow();
+        if(thread != null){
+            thread.interrupt();
         }
-        //TODO Pause (not stop) sound
-        soundManager.stopPlayingSound();
+
+        tts.stop();
+        gameManager.stop();
 
         if(sensorManager != null){
             sensorManager.unregisterListener(this);
@@ -237,6 +163,7 @@ public class GameActivity  extends AppCompatActivity implements SensorEventListe
     @Override
     protected void onResume() {
         super.onResume();
+
         //TODO Resume sound
         if(sensorManager != null){
             sensorManager.registerListener(this, sensor, Sensor.TYPE_GAME_ROTATION_VECTOR);
@@ -245,11 +172,11 @@ public class GameActivity  extends AppCompatActivity implements SensorEventListe
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getPointerCount() == 4){
-            startMenuActivity();
+        if(event.getPointerCount() == 4 && event.getAction() == MotionEvent.ACTION_MOVE){
+            Log.d("TOUCH", "TOUCH TYPE: " + event.getAction());
+            endGame();
         }
-
-        if(detector != null){
+        else if(detector != null){
             detector.onTouchEvent(event);
         }
 
@@ -264,15 +191,9 @@ public class GameActivity  extends AppCompatActivity implements SensorEventListe
     }
 
     @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
-
-    }
+    public void onAccuracyChanged(Sensor sensor, int i) {}
 
     protected void ttsSpeak(String text){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            tts.speak(text,TextToSpeech.QUEUE_FLUSH,null ,null);
-        } else {
-            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-        }
+        tts.speak(text,TextToSpeech.QUEUE_FLUSH,null ,null);
     }
 }

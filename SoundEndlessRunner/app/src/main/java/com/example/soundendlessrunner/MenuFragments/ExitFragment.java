@@ -1,12 +1,7 @@
 package com.example.soundendlessrunner.MenuFragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
-
-import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +13,7 @@ public class ExitFragment extends MenuFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         message = getString(R.string.ef_message);
-        repeatText();
+        sayMessage();
     }
 
 

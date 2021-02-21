@@ -14,7 +14,7 @@ public class StartTutorialFragment extends MenuFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         message = getString(R.string.stf_message);
-        repeatText();
+        sayMessage();
     }
 
     @Override

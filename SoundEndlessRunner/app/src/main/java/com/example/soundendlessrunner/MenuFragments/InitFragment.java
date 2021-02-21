@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-//TODO: Repair text to speech in init fragment
-
 import com.example.soundendlessrunner.R;
 
 public class InitFragment extends MenuFragment {
@@ -14,7 +12,6 @@ public class InitFragment extends MenuFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         message = getString(R.string.if_message);
-        repeatText();
     }
 
     @Override

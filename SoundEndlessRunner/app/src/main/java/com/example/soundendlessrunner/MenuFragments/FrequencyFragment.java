@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,7 @@ public class FrequencyFragment extends MenuFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         message = getString(R.string.ff_message);
-        repeatText();
+        sayMessage();
     }
 
     @Override
@@ -34,40 +33,42 @@ public class FrequencyFragment extends MenuFragment {
     }
 
     @Override
-    protected void nextMethod() {
+    protected void nextOption() {
         if(noOfObstacles < MAX_OBSTACLES){
             noOfObstacles++;
-            tts.speak("" + noOfObstacles, TextToSpeech.QUEUE_FLUSH, null);
+            message = getString(R.string.ff_message2) + noOfObstacles;
+            useTTS("" + noOfObstacles);
         }
         else{
-            tts.speak(getString(R.string.ff_max), TextToSpeech.QUEUE_FLUSH, null);
+            useTTS(getString(R.string.ff_max));
         }
     }
 
     @Override
-    protected void previousMethod() {
+    protected void previousOption() {
         if(noOfObstacles > MIN_OBSTACLES){
             noOfObstacles--;
-            tts.speak("" + noOfObstacles, TextToSpeech.QUEUE_FLUSH, null);
+            message = getString(R.string.ff_message2) + noOfObstacles;
+            useTTS("" + noOfObstacles);
         }
         else{
-            tts.speak(getString(R.string.ff_min), TextToSpeech.QUEUE_FLUSH, null);
+            useTTS(getString(R.string.ff_min));
         }
     }
 
     @Override
     public void changeWasFragmentChosen() {
-        wasFragmentChosen = !wasFragmentChosen;
+        super.changeWasFragmentChosen();
 
         if(wasFragmentChosen){
             message = getString(R.string.ff_message2);
-            tts.speak(message, TextToSpeech.QUEUE_FLUSH, null);
+            sayMessage();
             sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
             noOfObstacles = sharedPref.getInt(getString(R.string.settings_no_of_objects), DEFAULT_FREQUENCY);
         }
         else{
             message = getString(R.string.ff_message);
-            tts.speak(message, TextToSpeech.QUEUE_FLUSH, null);
+            sayMessage();
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(getString(R.string.settings_no_of_objects), noOfObstacles);
             editor.apply();

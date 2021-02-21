@@ -8,9 +8,11 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="350dp"
-        android:layout_height="164dp"
+        android:layout_width="284dp"
+        android:layout_height="203dp"
         android:text="@string/crf_message2"
+        android:textAlignment="center"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

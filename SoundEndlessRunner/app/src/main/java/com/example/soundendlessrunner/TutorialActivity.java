@@ -1,6 +1,5 @@
 package com.example.soundendlessrunner;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -9,13 +8,13 @@ import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 
 import com.example.soundendlessrunner.Enums.ControlType;
+import com.example.soundendlessrunner.MenuFragments.TutorialManager;
 
 import java.util.HashMap;
 import java.util.Locale;
 
 
 public class TutorialActivity extends GameActivity {
-    private int tutorialPart = 0;
     private HashMap<String, String> ttsParams;
     private String utteranceId = "justId";
 
@@ -26,6 +25,11 @@ public class TutorialActivity extends GameActivity {
 
         ttsParams = new HashMap<String, String>();
         ttsParams.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, utteranceId);
+    }
+
+    @Override
+    protected void init(int noOfTracks, int noOfObjects){
+        gameManager = new TutorialManager(noOfTracks, noOfObjects, this, handler, withStop);
     }
 
     @Override
@@ -42,7 +46,8 @@ public class TutorialActivity extends GameActivity {
 
                         Log.d("tts", "TTS initialization succes");
 
-                        part0();
+                        setTtsListener();
+                        speakIntro();
                         break;
                     case TextToSpeech.ERROR:
                         Log.d("tts", "TTS initialization failed");
@@ -52,15 +57,12 @@ public class TutorialActivity extends GameActivity {
         });
     }
 
-    @Override
-    public void runGame() {}
-
-    private void setTTSListener(){
+    private void setTtsListener(){
         tts.setOnUtteranceProgressListener(new UtteranceProgressListener() {
             @Override
             public void onDone(String utteranceId) {
                 Log.i("tutorial", "tts done");
-                continueTutorial();
+                ((TutorialManager)gameManager).continueTutorial();
             }
 
             @Override
@@ -76,16 +78,19 @@ public class TutorialActivity extends GameActivity {
     }
 
     @Override
-    protected void ttsSpeak(String text){
-        setTTSListener();
+    public void ttsSpeak(String text){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            tts.speak(text,TextToSpeech.QUEUE_FLUSH,null ,utteranceId);
+            tts.speak(text,TextToSpeech.QUEUE_FLUSH,null, utteranceId);
         } else {
             tts.speak(text, TextToSpeech.QUEUE_FLUSH, ttsParams);
         }
+        /*
+        while(tts.isSpeaking()){}
+        ((TutorialManager)gameManager).continueTutorial();
+         */
     }
 
-    private void part0(){
+    private void speakIntro(){
         String text = getString(R.string.tut_part0);
         if (control == ControlType.SWIPES.getValue()) {
             text += getString(R.string.tut_part0_swipe);
@@ -99,7 +104,7 @@ public class TutorialActivity extends GameActivity {
         ttsSpeak(text);
     }
 
-    private void part1(){
+    public void speakPart1(){
         String text = getString(R.string.tut_part0_end);
         text += getString(R.string.tut_part1);
         if (control == ControlType.SWIPES.getValue()) {
@@ -114,7 +119,7 @@ public class TutorialActivity extends GameActivity {
         ttsSpeak(text);
     }
 
-    private void part2(String text){
+    public void speakPart2(String text){
         text += getString(R.string.tut_part2);
         if (control == ControlType.SWIPES.getValue()) {
             text += getString(R.string.tut_part2_swipe);
@@ -128,106 +133,23 @@ public class TutorialActivity extends GameActivity {
         ttsSpeak(text);
     }
 
-    private void part3(){
+    public void speakPart3(){
         String text = getString(R.string.tut_part2_end);
         text += getString(R.string.tut_part3);
         ttsSpeak(text);
     }
 
-    private void part4(){
+    public void speakEnding(){
         String text = getString(R.string.tut_part3_end);
         ttsSpeak(text);
     }
 
     @Override
-    public void continueGame() {
-        if(tutorialPart == 1){
-            part2(" ");
-        }
+    public void endGame(){
+        TutorialActivity.this.finish();
     }
 
-    private void continueTutorial(){
-        switch (tutorialPart){
-            case 0:
-                soundManager.playObstacleSound();
-                break;
-            case 1:
-                break;
-            case 2:
-                soundManager.playPointSound();
-                adjustVolume();
-                break;
-            case 3:
-                soundManager.playHeartSound();
-                adjustVolume();
-                break;
-            default:
-                startMenuActivity();
-        }
-    }
-
-    @Override
-    public void moveLeftIfPossible() {
-        if(tutorialPart == 2){
-            tutorialPart++;
-            soundManager.stopPlayingSound();
-            part3();
-        }
-        else if(tutorialPart == 3){
-            gameData.moveLeftIfPossible();
-            adjustVolume();
-        }
-    }
-
-    @Override
-    public void moveRightIfPossible() {
-        if(tutorialPart == 0){
-            soundManager.stopPlayingSound();
-            tutorialPart++;
-            if(withStop){
-                part1();
-            }
-            else{
-                tutorialPart++;
-                part2(getString(R.string.tut_part0_end));
-            }
-        }
-        else if(tutorialPart == 3){
-            gameData.moveRightIfPossible();
-            if(gameData.getNoOfPlayerTrack() == 3){
-                soundManager.stopPlayingSound();
-                tutorialPart++;
-                part4();
-            }
-            else {
-                adjustVolume();
-            }
-        }
-    }
-
-    public void adjustVolume(){
-        int difference = 0;
-
-        switch (tutorialPart){
-            case 2:
-                difference = 1;
-                break;
-            case 3:
-                difference = gameData.getNoOfPlayerTrack() - 3;
-                break;
-        }
-
-        if(difference == 0){
-            soundManager.setVolume(1,1f);
-        }
-        else if(difference > 0){
-            float volume = 1 - (0.1f * difference);
-            soundManager.setVolume(volume, 0);
-        }
-        else{
-            difference -= 2*difference;
-            float volume = 1 - (0.1f * difference);
-            soundManager.setVolume(0, volume);
-        }
+    public boolean isTtsSpeaking(){
+        return tts.isSpeaking();
     }
 }

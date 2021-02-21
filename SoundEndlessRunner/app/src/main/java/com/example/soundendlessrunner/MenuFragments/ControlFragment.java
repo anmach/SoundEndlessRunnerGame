@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,7 @@ public class ControlFragment extends MenuFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         message = getString(R.string.cf_message);
-        repeatText();
+        sayMessage();
     }
 
     @Override
@@ -31,42 +30,41 @@ public class ControlFragment extends MenuFragment {
     }
 
     @Override
-    protected void nextMethod() {
+    protected void nextOption() {
         if(chosenControl.getValue() < ControlType.getMaxValue()){
             chosenControl = ControlType.findByValue((chosenControl.getValue() + 1));
         }
         else{
             chosenControl = ControlType.findByValue(ControlType.getMinValue());
         }
-        tts.speak(chosenControl.getMsg(), TextToSpeech.QUEUE_FLUSH, null);
+        useTTS(chosenControl.getMsg());
     }
 
     @Override
-    protected void previousMethod() {
+    protected void previousOption() {
         if(chosenControl.getValue() > ControlType.getMinValue()){
             chosenControl = ControlType.findByValue((chosenControl.getValue() - 1));
         }
         else{
             chosenControl = ControlType.findByValue(ControlType.getMaxValue());
         }
-        tts.speak(chosenControl.getMsg(), TextToSpeech.QUEUE_FLUSH, null);
+        useTTS(chosenControl.getMsg());
     }
 
     @Override
     public void changeWasFragmentChosen() {
-        //TODO: Test
-        wasFragmentChosen = !wasFragmentChosen;
+        super.changeWasFragmentChosen();
 
         if(wasFragmentChosen){
             message = getString(R.string.cf_message2);
-            tts.speak(message, TextToSpeech.QUEUE_FLUSH, null);
+            sayMessage();
             sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
             int chosenControlInt = sharedPref.getInt(getString(R.string.settings_control), ControlType.SWIPES.getValue());
             chosenControl = ControlType.findByValue(chosenControlInt);
         }
         else{
             message = getString(R.string.cf_message);
-            tts.speak(message, TextToSpeech.QUEUE_FLUSH, null);
+            sayMessage();
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(getString(R.string.settings_control), chosenControl.getValue());
             editor.apply();

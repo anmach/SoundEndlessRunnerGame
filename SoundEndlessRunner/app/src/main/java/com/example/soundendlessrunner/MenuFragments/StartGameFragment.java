@@ -13,7 +13,7 @@ public class StartGameFragment extends MenuFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         message = getString(R.string.sgf_message);
-        repeatText();
+        sayMessage();
     }
 
     @Override

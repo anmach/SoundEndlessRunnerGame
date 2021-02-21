@@ -4,7 +4,7 @@ import android.hardware.SensorEvent;
 import android.util.Log;
 
 import com.example.soundendlessrunner.Control.GameSensorControl;
-import com.example.soundendlessrunner.GameActivity;
+import com.example.soundendlessrunner.GameManager;
 
 public class GameSensorControlWithStop extends GameSensorControl {
     final float MIN_RESET_ROTATION = 0.2f;
@@ -12,8 +12,8 @@ public class GameSensorControlWithStop extends GameSensorControl {
     final float MIN_CONTINUE_ROTATION = -0.3f;
     boolean resetedContinue = true;
 
-    public GameSensorControlWithStop(GameActivity gameActivity) {
-        super(gameActivity);
+    public GameSensorControlWithStop(GameManager gameManager) {
+        super(gameManager);
     }
 
     @Override
@@ -27,10 +27,10 @@ public class GameSensorControlWithStop extends GameSensorControl {
             if (xVal > MIN_ROTATION) {
                 Log.d("sensor", "LEFT");
                 resetedPosition = false;
-                gameActivity.moveRightIfPossible();
+                gameManager.moveRightIfPossible();
             } else if (xVal < -MIN_ROTATION) {
                 resetedPosition = false;
-                gameActivity.moveLeftIfPossible();
+                gameManager.moveLeftIfPossible();
             }
         }
 
@@ -39,7 +39,7 @@ public class GameSensorControlWithStop extends GameSensorControl {
         } else if (resetedContinue && yVal < MIN_CONTINUE_ROTATION) {
             Log.d("sensor", "MOVE");
             resetedContinue = false;
-            gameActivity.continueGame();
+            gameManager.continueGame();
         }
     }
 }

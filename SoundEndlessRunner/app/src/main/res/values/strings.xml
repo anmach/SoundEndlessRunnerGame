@@ -14,30 +14,29 @@
     <!-- Start Game Fragment-->
     <string name="sgf_message">Play. Double tap to play the game.</string>
     <!-- No of Tracks Fragment-->
+    <string name="notf_title">Number of tracks.</string>
     <string name="notf_message">Tracks. Double tap to change number of tracks in game.</string>
-    <string name="notf_message2">Swipe to change number of tracks. Double tap to save and go back to menu. </string>
+    <string name="notf_message2">Swipe to change number of tracks. Double tap to save and go back to menu. Current number of tracks: </string>
     <string name="notf_max">You already have maximum number of tracks.</string>
     <string name="notf_min">You already have minimum number of tracks.</string>
-    <!-- Volume Fragment-->
-    <string name="vf_message">Volume. Double tap to change volume.</string>
-    <string name="vf_message2">Swipe to change volume. Double tap to save and go back to menu.</string>
-    <string name="vf_max">You already have maximum volume.</string>
-    <string name="vf_min">You already have minimum volume.</string>
     <!-- Frequency Fragment-->
+    <string name="ff_title">Number of objects.</string>
     <string name="ff_message">Objects. Double tap to change number of objects appearing per minute.</string>
-    <string name="ff_message2">Swipe to change number of obstacles appearing per minute. Double tap to save and go back to menu.</string>
+    <string name="ff_message2">Swipe to change number of obstacles appearing per minute. Double tap to save and go back to menu. Current number of objects: </string>
     <string name="ff_max">You already have maximum number of objects.</string>
     <string name="ff_min">You already have minimum number of obstacles.</string>
     <!-- Control Fragment-->
-    <string name="cf_message">Controls. Double tap to change controls in game.</string>
+    <string name="cf_title">Controls.</string>
+    <string name="cf_message">Controls. Double tap to change controls in game. </string>
     <string name="cf_message2">Swipe to change controls. Double tap to save and go back to menu.</string>
     <string name="cf_option0">Swipes</string>
     <string name="cf_option1">Accelerometer</string>
     <string name="cf_option2">Speech recognition</string>
     <string name="cf_option3">Tap on sides of screen</string>
     <!-- Enable Stop Fragment-->
-    <string name="esf_message_disabled">Enable stop. Double tap to enable stopping in game.</string>
-    <string name="esf_message_enabled">Disable stop. Double tap to disable stopping in game</string>
+    <string name="esf_title">Stop.</string>
+    <string name="esf_message_disabled">Stop disabled. Double tap to turn on stopping before objects in game.</string>
+    <string name="esf_message_enabled">Stop enabled. Double tap to turn off stopping before objects in game</string>
     <!-- Start Tutorial Fragment-->
     <string name="stf_message">Tutorial. Double tap to start the tutorial.</string>
     <!-- Credits Fragment-->
@@ -53,11 +52,11 @@
     <string name="ef_message">Exit. Double tap to exit.</string>
 
     <!-- Tutorial -->
-    <string name="tut_part0">"Hello in the tutorial. We will show you how to play the game.
+    <string name="tut_part0">Hello in the tutorial. We will show you how to play the game.
         In game you will be hearing one of three types of sounds, each symbolizing one type of object - obstacle, life or point.
         You have to avoid obstacles. If you will fail running away you will lose one life. You can get additional lifes to play longer.
         You can get points to get better score.
-        Soon you will hear sound which symbolize obstacle. Obstacle will be placed on the same track as you. You will hear sound in both earphones "</string>
+        Soon you will hear sound which symbolize obstacle. Obstacle will be placed on the same track as you. You will hear sound in both earphones.</string>
     <string name="tut_part0_swipe">Swipe right to move to next track and run away from obstacle. </string>
     <string name="tut_part0_tap">Tap on the right side of screen to move to next track and run away from obstacle. </string>
     <string name="tut_part0_sensor">Tilt device to right to move to next track and run away from obstacle. </string>
